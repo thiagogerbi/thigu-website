@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+/* Mesmos tokens do Thigu Gestão, mais alguns tons para as seções escuras do site. */
+@theme {
+  --color-navy: #142d4e;
+  --color-navy-900: #0d1f38;
+  --color-navy-700: #1d3b63;
+  --color-navy-600: #2a4c7a;
+  --color-primary: #3563e9;
+  --color-primary-700: #2449c4;
+  --color-primary-50: #eef3fe;
+  --color-money: #18a77b;
+  --color-money-700: #0f7d5b;
+  --color-money-50: #e8f7f1;
+  --color-canvas: #f6f8fc;
+  --color-ink: #172033;
+  --color-muted: #4b5565;
+  --color-line: #dfe5ef;
+  --color-danger: #b42318;
+  --color-danger-50: #fef3f2;
+  --color-warn: #93590a;
+  --color-warn-50: #fff7e6;
+  --color-on-navy: #dbe4f3;
+  --color-on-navy-muted: #a9bad6;
+  --color-sky: #8fb3ff;
+  --color-mint: #5fe0b5;
+
+  --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Manrope Variable", "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-soft: 0 10px 30px -12px rgba(20, 45, 78, 0.25);
+  --shadow-deep: 0 30px 60px -20px rgba(13, 31, 56, 0.45);
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 8s ease-in-out -2s infinite;
+  --animate-fade-in: fade-in 0.35s ease;
+
+  @keyframes float {
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+section[id] {
+  scroll-margin-top: 72px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Fundo quadriculado das seções escuras */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at 70% 30%, #000 0%, transparent 70%);
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--color-sky) 0%, var(--color-mint) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Revelar ao rolar (componente Reveal) */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
